@@ -1,4 +1,6 @@
-import './alert-button.css';
+
+import './alert-button-text.css';
+import './alert-button.scss';
 
 class AlertButton {
     #text = 'Click me';

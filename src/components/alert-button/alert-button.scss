@@ -1,0 +1,19 @@
+@use 'sass:color';
+
+$base-color: #04AA6D;
+$text-color: color.adjust($base-color, $lightness: -30%, $alpha: -0.4);;
+
+.alert-button {
+    background-color: #04AA6D;
+    border: none;
+    color: $text-color;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+
+    &:hover {
+        background-color: color.adjust($base-color, $lightness: 10%);
+    }
+}
