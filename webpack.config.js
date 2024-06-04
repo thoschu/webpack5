@@ -12,13 +12,22 @@ module.exports = {
     mode: 'none',
     module: {
         rules: [
+            // {
+            //     test: /\.(png|jpg)$/,
+            //     type: 'asset/resource'
+            // },
+            // {
+            //     test: /\.(svg)$/,
+            //     type: 'asset/inline'
+            // },
             {
-                test: /\.(png|jpg)$/,
-                type: 'asset/resource'
-            },
-            {
-                test: /\.(svg)$/,
-                type: 'asset/inline'
+                test: /\.(png|jpg|svg)$/,
+                type: 'asset',
+                parser: {
+                    dataUrlCondition: {
+                        maxSize: 4 * 1024 // 4kb
+                    }
+                }
             }
         ]
     }
