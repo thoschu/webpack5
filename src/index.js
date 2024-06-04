@@ -1,6 +1,5 @@
 import helloWorld from './hello-World.js';
-import addImage from './add-image.js';
+import createImages from './add-image.js';
 
 helloWorld();
-addImage();
-console.log('xxxxxx');
+createImages();

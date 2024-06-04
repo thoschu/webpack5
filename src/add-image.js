@@ -1,21 +1,20 @@
 import Kiwi from './kiwi.jpg';
 import Plan from './plan.png';
 
-function addImage() {
-    const imgKiwi = document.createElement('img');
-    imgKiwi.alt = 'Kiwi';
-    imgKiwi.width = 256;
-    imgKiwi.src = Kiwi;
-    const body = document.querySelector('body');
-    body.appendChild(imgKiwi);
+const body = document.querySelector('body');
 
-    const imgPlan = document.createElement('img');
+function addImage(imgAlt, imgWidth, imgSrc) {
+    const img = document.createElement('img');
+    img.alt = imgAlt;
+    img.width = imgWidth;
+    img.src = imgSrc;
 
-    imgPlan.alt = 'Kiwi';
-    imgPlan.width = 512;
-    imgPlan.src = Plan;
-
-    body.appendChild(imgPlan);
+    body.appendChild(img);
 }
 
-export default addImage;
+function createImages() {
+    addImage('Kiwi', 256, Kiwi);
+    addImage('Plan', 512, Plan)
+}
+
+export default createImages;
