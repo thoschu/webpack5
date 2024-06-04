@@ -1,6 +1,7 @@
 import Kiwi from './kiwi.jpg';
 import Plan from './plan.png';
 import Hamburg from './hamburg.svg';
+import Txt from './text.txt';
 
 const body = document.querySelector('body');
 
@@ -9,6 +10,7 @@ function addImage(imgAlt, imgWidth, imgSrc) {
     img.alt = imgAlt;
     img.width = imgWidth;
     img.src = imgSrc;
+    img.title = Txt;
 
     body.appendChild(img);
 }
