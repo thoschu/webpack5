@@ -1,7 +1,5 @@
-@use 'sass:color';
-
 $base-color: #04AA6D;
-$text-color: color.adjust($base-color, $lightness: -30%, $alpha: -0.4);;
+$text-color: darken($base-color, 20%);
 
 .alert-button {
     background-color: #04AA6D;
@@ -14,6 +12,6 @@ $text-color: color.adjust($base-color, $lightness: -30%, $alpha: -0.4);;
     font-size: 16px;
 
     &:hover {
-        background-color: color.adjust($base-color, $lightness: 10%);
+        background-color: lighten($base-color, 20%);
     }
 }

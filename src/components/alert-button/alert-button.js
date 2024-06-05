@@ -4,6 +4,11 @@ import './alert-button.scss';
 
 class AlertButton {
     #text = 'Click me';
+    person = #{name: 'Tom S.', age: 47};
+
+    constructor() {
+        console.log(this.person.name);
+    }
 
     render() {
         const body = document.querySelector('body');
@@ -11,6 +16,7 @@ class AlertButton {
 
         button.classList.add('alert-button');
         button.innerHTML = `<span>${this.#text}</span>`;
+
         button.addEventListener('click', (val) => {
             const text = `Button clicked at: ${val.timeStamp}`;
             const p = document.createElement('p');
