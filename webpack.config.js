@@ -1,11 +1,20 @@
 const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
+    devServer: {
+        static: {
+            directory: path.join(__dirname, '/'),
+        },
+        compress: true,
+        port: 9000,
+    },
     entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, './dist'),
-        filename: 'bundle.js',
+        filename: 'bundle.[contenthash].js',
         //publicPath: 'auto',
         //publicPath: 'https://cdn.example.com/assets/',
         publicPath: 'dist/'
@@ -13,6 +22,10 @@ module.exports = {
     mode: 'none',
     plugins: [
         new TerserPlugin(),
+        new MiniCssExtractPlugin({
+            filename: 'styling.[contenthash].css'
+        }),
+        new CleanWebpackPlugin()
     ],
     module: {
         rules: [
@@ -46,7 +59,7 @@ module.exports = {
             {
                 test: /\.scss$/,
                 use: [
-                    'style-loader', 'css-loader', 'sass-loader'
+                    MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'
                 ]
             },
             {

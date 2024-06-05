@@ -1,0 +1,8 @@
+.alert-text {
+    color: red;
+    font-weight: bold;
+}
+
+.alert-text:hover {
+    color: transparent;
+}
