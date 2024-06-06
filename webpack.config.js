@@ -33,10 +33,11 @@ module.exports = {
         }),
         new CleanWebpackPlugin({}),
         new HtmlWebpackPlugin({
-            title: "Webpack App by Tom S.",
+            template: 'src/index.hbs',
+            title: 'Webpack App by Tom S.',
             filename: 'index.html',
             meta: {
-                discription: 'A better Webpack Starter',
+                description: 'A better Webpack Solution',
             }
         })
     ],
@@ -94,6 +95,10 @@ module.exports = {
                         ]
                     }
                 }
+            },
+            {
+                test: /\.hbs$/,
+                loader: 'handlebars-loader'
             }
         ]
     }
