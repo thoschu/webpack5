@@ -3,14 +3,14 @@ import './alert-button.scss';
 
 class AlertButton {
     #text = 'Click me';
-    person = #{name: 'Tom S.', age: 46, location: 'Germany'};
+    person = #{name: 'Tom S.', age: 46, location: 'Germany, Hamburg'};
 
     constructor() {
         console.log(this.person.name);
     }
 
     render() {
-        const body = document.querySelector('main');
+        const body = document.querySelector('body');
         const button = document.createElement('button');
 
         button.classList.add('alert-button');

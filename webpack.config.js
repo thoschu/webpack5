@@ -2,14 +2,16 @@ const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     devServer: {
         static: {
-            directory: path.join(__dirname, '/'),
+            directory: path.join(__dirname, './dist'),
         },
         compress: true,
-        port: 9000,
+        port: 8080,
+        allowedHosts: 'auto',
     },
     entry: './src/index.js',
     output: {
@@ -17,7 +19,11 @@ module.exports = {
         filename: 'bundle.[contenthash].js',
         //publicPath: 'auto',
         //publicPath: 'https://cdn.example.com/assets/',
-        publicPath: 'dist/'
+        publicPath: '',
+        // clean: {
+        //     dry: true,
+        //     keep: /\.css/,
+        // }
     },
     mode: 'none',
     plugins: [
@@ -25,7 +31,14 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: 'styling.[contenthash].css'
         }),
-        new CleanWebpackPlugin()
+        new CleanWebpackPlugin({}),
+        new HtmlWebpackPlugin({
+            title: "Webpack App by Tom S.",
+            filename: 'index.html',
+            meta: {
+                discription: 'A better Webpack Starter',
+            }
+        })
     ],
     module: {
         rules: [
