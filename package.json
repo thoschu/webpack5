@@ -4,10 +4,12 @@
   "description": "https://webpack.js.org/",
   "main": "",
   "scripts": {
-    "webpack": "npx webpack",
+    "webpack": "npx webpack --config webpack.config.js",
     "webpack:development": "npx webpack --mode=development",
     "webpack:production": "npx webpack --mode=production",
     "webpack:serve": "npx webpack serve",
+    "webpack:serve:development": "npx webpack serve --mode=development",
+    "webpack:serve:production": "npx webpack serve --mode=production",
     "webpack:stats": "npx webpack --stats detailed",
     "serve": "npx http-server -o ./dist/index.html --log-ip true",
     "clean": "npx rimraf dist",

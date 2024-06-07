@@ -4,7 +4,7 @@ $base-color: #04AA6D;
 $text-color: darken($base-color, 20%);
 
 .alert-button {
-    background-color: #04AA6D;
+    background-color: $base-color;
     border: none;
     color: $text-color;
     padding: 15px 32px;

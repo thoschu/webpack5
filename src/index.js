@@ -11,6 +11,6 @@ try {
         alertButton.render();
     }
 } catch (error) {
-    // console.error(error);
+    console.error(error);
     createImages();
 }

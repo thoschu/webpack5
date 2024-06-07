@@ -9,11 +9,15 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     devServer: {
         static: {
-            directory: path.join(__dirname, './dist'),
+            directory: path.resolve(__dirname, './dist'),
         },
-        compress: true,
+        compress: false,
         port: 8080,
         allowedHosts: 'auto',
+        devMiddleware: {
+            index: 'index.html',
+            writeToDisk: true
+        }
     },
     entry: './src/index.js',
     output: {
