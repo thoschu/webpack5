@@ -12,5 +12,7 @@ try {
     }
 } catch (error) {
     console.error(error);
+    helloWorld();
+    alertButton.render();
     createImages();
 }
