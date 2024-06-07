@@ -5,6 +5,8 @@
   "main": "",
   "scripts": {
     "webpack": "npx webpack",
+    "webpack:development": "npx webpack --mode=development",
+    "webpack:production": "npx webpack --mode=production",
     "webpack:serve": "npx webpack serve",
     "webpack:stats": "npx webpack --stats detailed",
     "serve": "npx http-server -o ./dist/index.html --log-ip true",

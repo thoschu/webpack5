@@ -27,9 +27,10 @@ module.exports = {
         //     keep: /\.css/,
         // }
     },
-    mode: 'none',
+    // https://webpack.js.org/configuration/mode/#usage
+    mode: 'none', // 'none' 'development' 'production'
     plugins: [
-        new TerserPlugin(),
+        new TerserPlugin(), // in production mode by default
         new MiniCssExtractPlugin({
             filename: 'styling.[contenthash].css'
         }),
