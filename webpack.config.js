@@ -25,7 +25,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, './dist'),
-        filename: '[name].[contenthash].js', //'[id].[contenthash].js',
+        filename: '[name].[contenthash].js', //'[id].[contenthash].js'
         //publicPath: 'auto',
         //publicPath: 'https://cdn.example.com/assets/',
         publicPath: '',
@@ -42,13 +42,34 @@ module.exports = {
             filename: '[name].[contenthash].css'
         }),
         new CleanWebpackPlugin({}),
+        // new HtmlWebpackPlugin({
+        //     template: 'src/index.hbs',
+        //     title: 'Webpack App by Tom S.',
+        //     filename: 'index.html',
+        //     meta: {
+        //         description: 'A better Webpack Solution',
+        //     },
+        //     minify: true
+        // })
         new HtmlWebpackPlugin({
             template: 'src/index.hbs',
             title: 'Webpack App by Tom S.',
             filename: 'index.html',
             meta: {
                 description: 'A better Webpack Solution',
-            }
+            },
+            minify: true,
+            chunks: ['index']
+        }),
+        new HtmlWebpackPlugin({
+            template: 'src/index.hbs',
+            title: 'Webpack Car by Tom S.',
+            filename: 'car.html',
+            meta: {
+                description: 'A better Webpack Solution for Car',
+            },
+            minify: false,
+            chunks: ['car']
         })
     ],
     module: {
