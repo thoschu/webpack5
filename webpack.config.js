@@ -19,10 +19,13 @@ module.exports = {
             writeToDisk: true
         }
     },
-    entry: './src/index.js',
+    entry: {
+        index: './src/index.js',
+        car: './src/car.js'
+    },
     output: {
         path: path.resolve(__dirname, './dist'),
-        filename: 'bundle.[contenthash].js',
+        filename: '[name].[contenthash].js', //'[id].[contenthash].js',
         //publicPath: 'auto',
         //publicPath: 'https://cdn.example.com/assets/',
         publicPath: '',
@@ -36,7 +39,7 @@ module.exports = {
     plugins: [
         new TerserPlugin(), // in production mode by default
         new MiniCssExtractPlugin({
-            filename: 'styling.[contenthash].css'
+            filename: '[name].[contenthash].css'
         }),
         new CleanWebpackPlugin({}),
         new HtmlWebpackPlugin({
@@ -59,7 +62,7 @@ module.exports = {
             //     type: 'asset/inline'
             // },
             {
-                test: /\.(png|jpg|svg)$/,
+                test: /\.(png|jpg|svg|webp)$/,
                 type: 'asset',
                 parser: {
                     dataUrlCondition: {
