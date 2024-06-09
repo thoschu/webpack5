@@ -2,10 +2,11 @@ import './alert-text.css';
 import './alert-button.scss';
 
 class AlertButton {
-    #text = 'Click me';
+    #text;
     person = #{name: 'Tom S.', age: 46, location: 'Germany, Hamburg'};
 
-    constructor() {
+    constructor(buttonText = 'Click me') {
+        this.#text = buttonText;
         console.log(this.person.name);
     }
 

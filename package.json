@@ -11,7 +11,9 @@
     "webpack:serve:development": "npx webpack serve --mode=development",
     "webpack:serve:production": "npx webpack serve --mode=production",
     "webpack:stats": "npx webpack --stats detailed",
-    "serve": "npx http-server -o ./dist/index.html --log-ip true",
+    "serve": "npx concurrently \"npm run serve:hello\" \"npm run serve:car\"",
+    "serve:hello": "npx http-server -o ./dist/hello.html --log-ip true",
+    "serve:car": "npx http-server -o ./dist/car.html --log-ip true",
     "clean": "npx rimraf dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -36,5 +38,9 @@
     "webpack": "^5.91.0",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.0.4"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "react": "^18.3.1"
   }
 }

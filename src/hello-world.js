@@ -1,5 +1,5 @@
-function helloWorld() {
-    console.log('Moin mode: production !!!');
+function helloWorld(text = 'Moin mode: production !!!') {
+    console.log(text);
 }
 
 export default helloWorld;

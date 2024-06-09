@@ -16,9 +16,8 @@ class Car {
         this.#img.title = this.#car;
         this.#img.classList.add('car-image');
 
-       this.#body.appendChild(this.#img);
+        this.#body.appendChild(this.#img);
     }
-
 }
 
 export default Car;

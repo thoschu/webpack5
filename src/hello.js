@@ -1,8 +1,12 @@
+import { toUpper } from 'lodash';
+
 import helloWorld from './hello-World.js';
 import createImages from './add-image.js';
 import AlterButton from './components/alert-button/alert-button.js';
 
-const alertButton = new AlterButton();
+const alertButton = new AlterButton(
+    toUpper('Bitte klicken...')
+);
 
 try {
     if(process.env.NODE_ENV === 'production') {

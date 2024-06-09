@@ -8,19 +8,26 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     devServer: {
+        //bonjour: true,
+        client: {
+            logging: 'verbose',
+        },
         static: {
             directory: path.resolve(__dirname, './dist'),
         },
-        compress: false,
-        port: 8080,
+        compress: true,
+        port: 9000,
         allowedHosts: 'auto',
+        headers: {
+            'X-Custom-Foo': 'bar',
+        },
         devMiddleware: {
-            index: 'index.html',
+            index: '/', // 'hello.html'
             writeToDisk: true
         }
     },
     entry: {
-        index: './src/index.js',
+        hello: './src/hello.js',
         car: './src/car.js'
     },
     output: {
@@ -36,6 +43,12 @@ module.exports = {
     },
     // https://webpack.js.org/configuration/mode/#usage
     mode: 'none', // 'none' 'development' 'production'
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+            minSize: 4000
+        }
+    },
     plugins: [
         new TerserPlugin(), // in production mode by default
         new MiniCssExtractPlugin({
@@ -43,7 +56,7 @@ module.exports = {
         }),
         new CleanWebpackPlugin({}),
         // new HtmlWebpackPlugin({
-        //     template: 'src/index.hbs',
+        //     template: 'src/template.hbs',
         //     title: 'Webpack App by Tom S.',
         //     filename: 'index.html',
         //     meta: {
@@ -52,17 +65,17 @@ module.exports = {
         //     minify: true
         // })
         new HtmlWebpackPlugin({
-            template: 'src/index.hbs',
+            template: 'src/template.hbs',
             title: 'Webpack App by Tom S.',
-            filename: 'index.html',
+            filename: 'hello.html',
             meta: {
                 description: 'A better Webpack Solution',
             },
             minify: true,
-            chunks: ['index']
+            chunks: ['hello']
         }),
         new HtmlWebpackPlugin({
-            template: 'src/index.hbs',
+            template: 'src/template.hbs',
             title: 'Webpack Car by Tom S.',
             filename: 'car.html',
             meta: {
