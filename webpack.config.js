@@ -7,6 +7,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 // https://webpack.js.org/plugins/
 
 module.exports = {
+    performance : {
+        hints : false,
+    },
     devServer: {
         //bonjour: true,
         client: {
@@ -28,7 +31,11 @@ module.exports = {
     },
     entry: {
         hello: './src/hello.js',
-        car: './src/car.js'
+        // car: './src/car.js',
+        car: {
+            import: './src/car.js',
+            // dependOn: 'shared',
+        }
     },
     output: {
         path: path.resolve(__dirname, './dist'),
@@ -46,7 +53,7 @@ module.exports = {
     optimization: {
         splitChunks: {
             chunks: 'all',
-            minSize: 4000
+            minSize: 3000
         }
     },
     plugins: [
