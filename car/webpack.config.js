@@ -3,6 +3,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { ModuleFederationPlugin } = require('webpack').container;
 
 // https://webpack.js.org/plugins/
 
@@ -19,29 +20,31 @@ module.exports = {
             directory: path.resolve(__dirname, './dist'),
         },
         compress: true,
-        port: 9000,
+        port: 9002,
         allowedHosts: 'auto',
         headers: {
             'X-Custom-Foo': 'bar',
         },
         devMiddleware: {
-            index: '/', // 'hello.html'
+            index: 'car.html', // '/'
             writeToDisk: true
         }
     },
-    entry: {
-        hello: './src/hello.js',
-        // car: './src/car.js',
-        car: {
-            import: './src/car.js',
-            // dependOn: 'shared',
-        }
-    },
+    entry: './src/car.js',
+    // entry: {
+    //     hello: './src/hello.js',
+    //     // car: './src/car.js',
+    //     car: {
+    //         import: './src/car.js',
+    //         // dependOn: 'shared',
+    //     }
+    // },
     output: {
         path: path.resolve(__dirname, './dist'),
         filename: '[name].[contenthash].js', //'[id].[contenthash].js'
         //publicPath: 'auto',
         //publicPath: 'https://cdn.example.com/assets/',
+        //publicPath: 'http://127.0.0.1:8899/',
         publicPath: '',
         // clean: {
         //     dry: true,
@@ -73,35 +76,29 @@ module.exports = {
         // })
         new HtmlWebpackPlugin({
             template: 'src/template.hbs',
-            title: 'Webpack App by Tom S.',
-            filename: 'hello.html',
-            meta: {
-                description: 'A better Webpack Solution',
-            },
-            minify: true,
-            chunks: ['hello']
-        }),
-        new HtmlWebpackPlugin({
-            template: 'src/template.hbs',
             title: 'Webpack Car by Tom S.',
             filename: 'car.html',
             meta: {
                 description: 'A better Webpack Solution for Car',
             },
-            minify: false,
-            chunks: ['car']
-        })
+            minify: false
+        }),
+        // new ModuleFederationPlugin({
+        //     name: 'HelloApp',
+        //     filename: 'remoteEntry.js',
+        //     exposes: {
+        //         './Hello': './src/hello.js',
+        //     },
+        // }),
+        // new ModuleFederationPlugin({
+        //     name: 'CarApp',
+        //     remotes: {
+        //         'HelloApp': 'HelloApp@http://localhost:8899/remoteEntry.js',
+        //     },
+        // })
     ],
     module: {
         rules: [
-            // {
-            //     test: /\.(png|jpg)$/,
-            //     type: 'asset/resource'
-            // },
-            // {
-            //     test: /\.(svg)$/,
-            //     type: 'asset/inline'
-            // },
             {
                 test: /\.(png|jpg|svg|webp)$/,
                 type: 'asset',
@@ -116,36 +113,11 @@ module.exports = {
                 type: 'asset/source'
             },
             {
-                test: /\.css$/,
-                use: [
-                    'style-loader', 'css-loader'
-                ]
-            },
-            {
                 test: /\.scss$/,
                 use: [
+                    //'style-loader', 'css-loader', 'sass-loader'
                     MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'
                 ]
-            },
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: [
-                            '@babel/env' // compiles modern JS down to ES5
-                        ],
-                        plugins: [
-                            [
-                                '@babel/plugin-proposal-record-and-tuple',
-                                {
-                                    'importPolyfill': true
-                                }
-                            ]
-                        ]
-                    }
-                }
             },
             {
                 test: /\.hbs$/,

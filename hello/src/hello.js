@@ -14,7 +14,7 @@ try {
     } else if(process.env.NODE_ENV === 'development') {
         alertButton.render();
     }
-} catch (error) {
+} catch(error) {
     console.error(error);
     helloWorld();
     alertButton.render();

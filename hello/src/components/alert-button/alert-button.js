@@ -19,7 +19,7 @@ class AlertButton {
 
         button.addEventListener('click', (val) => {
             const text = `Button clicked at: ${val.timeStamp}`;
-            const p = document.createElement('p');
+            const p= document.createElement('p');
 
             p.classList.add('alert-text');
             p.innerText = text;
