@@ -37,7 +37,8 @@ module.exports = {
         //publicPath: 'auto',
         //publicPath: 'https://cdn.example.com/assets/',
         //publicPath: 'http://127.0.0.1:8899/',
-        publicPath: '',
+        //publicPath: 'http://locslhost:9001/',
+        publicPath: 'http://localhost:3001/',
         clean: {
             dry: true,
             // keep: /\.css/,
@@ -65,19 +66,13 @@ module.exports = {
             },
             minify: false
         }),
-        // new ModuleFederationPlugin({
-        //     name: 'HelloApp',
-        //     filename: 'remoteEntry.js',
-        //     exposes: {
-        //         './Hello': './src/hello.js',
-        //     },
-        // }),
-        // new ModuleFederationPlugin({
-        //     name: 'CarApp',
-        //     remotes: {
-        //         'HelloApp': 'HelloApp@http://localhost:8899/remoteEntry.js',
-        //     },
-        // })
+        new ModuleFederationPlugin({
+            name: 'HelloWorldApp',
+            filename: 'remoteEntry.js',
+            exposes: {
+                './AlertButton': './src/components/alert-button/alert-button.js',
+            },
+        })
     ],
     module: {
         rules: [

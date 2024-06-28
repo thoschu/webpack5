@@ -1,10 +1,10 @@
 import { toUpper } from 'lodash';
 
 import helloWorld from './hello-World.js';
-import AlterButton from './components/alert-button/alert-button.js';
+import AlertButton from './components/alert-button/alert-button.js';
 
 const text = toUpper('Bitte klicken...'),
-    alertButton = new AlterButton(text);
+    alertButton = new AlertButton(text);
 
 try {
     helloWorld();

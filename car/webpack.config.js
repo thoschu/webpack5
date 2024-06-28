@@ -74,19 +74,12 @@ module.exports = {
             },
             minify: false
         }),
-        // new ModuleFederationPlugin({
-        //     name: 'HelloApp',
-        //     filename: 'remoteEntry.js',
-        //     exposes: {
-        //         './Hello': './src/hello.js',
-        //     },
-        // }),
-        // new ModuleFederationPlugin({
-        //     name: 'CarApp',
-        //     remotes: {
-        //         'HelloApp': 'HelloApp@http://localhost:8899/remoteEntry.js',
-        //     },
-        // })
+        new ModuleFederationPlugin({
+            name: 'CarApp',
+            remotes: {
+                'HelloWorldApp': 'HelloWorldApp@http://localhost:3001/remoteEntry.js',
+            },
+        })
     ],
     module: {
         rules: [
