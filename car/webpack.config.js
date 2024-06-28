@@ -65,15 +65,6 @@ module.exports = {
             filename: '[name].[contenthash].css'
         }),
         new CleanWebpackPlugin({}),
-        // new HtmlWebpackPlugin({
-        //     template: 'src/template.hbs',
-        //     title: 'Webpack App by Tom S.',
-        //     filename: 'index.html',
-        //     meta: {
-        //         description: 'A better Webpack Solution',
-        //     },
-        //     minify: true
-        // })
         new HtmlWebpackPlugin({
             template: 'src/template.hbs',
             title: 'Webpack Car by Tom S.',
