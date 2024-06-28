@@ -100,10 +100,6 @@ module.exports = {
                 }
             },
             {
-                test: /\.txt/,
-                type: 'asset/source'
-            },
-            {
                 test: /\.scss$/,
                 use: [
                     //'style-loader', 'css-loader', 'sass-loader'
