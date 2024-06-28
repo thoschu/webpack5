@@ -19,7 +19,7 @@ module.exports = {
         static: {
             directory: path.resolve(__dirname, './dist'),
         },
-        compress: true,
+        compress: false,
         port: 9001,
         allowedHosts: 'auto',
         headers: {
@@ -40,7 +40,7 @@ module.exports = {
         publicPath: '',
         clean: {
             dry: true,
-            keep: /\.css/,
+            // keep: /\.css/,
         }
     },
     // https://webpack.js.org/configuration/mode/#usage
