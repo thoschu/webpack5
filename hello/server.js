@@ -4,15 +4,8 @@ const fs = require('fs');
 
 const app = express();
 
-app.get('/hello/', (req, res) => {
+app.get('/', (req, res) => {
     const pathToHtmlFile = path.resolve(__dirname, './dist/hello.html');
-    const contentFromHtmlFile = fs.readFileSync(pathToHtmlFile, 'utf-8');
-
-    res.send(contentFromHtmlFile);
-});
-
-app.get('/car/', (req, res) => {
-    const pathToHtmlFile = path.resolve(__dirname, './dist/car.html');
     const contentFromHtmlFile = fs.readFileSync(pathToHtmlFile, 'utf-8');
 
     res.send(contentFromHtmlFile);

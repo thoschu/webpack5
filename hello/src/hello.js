@@ -1,7 +1,6 @@
 import { toUpper } from 'lodash';
 
 import helloWorld from './hello-World.js';
-import createImages from './add-image.js';
 import AlterButton from './components/alert-button/alert-button.js';
 
 const alertButton = new AlterButton(
@@ -18,5 +17,4 @@ try {
     console.error(error);
     helloWorld();
     alertButton.render();
-    createImages();
 }

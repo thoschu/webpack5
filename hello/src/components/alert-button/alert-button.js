@@ -1,5 +1,6 @@
 import './alert-text.css';
 import './alert-button.scss';
+import Txt from './text.txt';
 
 class AlertButton {
     #text;
@@ -18,7 +19,7 @@ class AlertButton {
         button.innerHTML = `<span>${this.#text}</span>`;
 
         button.addEventListener('click', (val) => {
-            const text = `Button clicked at: ${val.timeStamp}`;
+            const text = `Button clicked at: ${val.timeStamp} / ${Txt}`;
             const p= document.createElement('p');
 
             p.classList.add('alert-text');
