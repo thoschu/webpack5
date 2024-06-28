@@ -14,7 +14,7 @@
     "serve": "npx http-server -o ./dist --log-ip true",
     "serve:hello": "npx http-server --port 8899 -o ./dist/hello.html --log-ip true",
     "server": "node server.js",
-    "clean": "npx rimraf dist",
+    "clean:dist": "npx rimraf dist",
     "clean:node_modules": "npx rimraf node_modules",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
