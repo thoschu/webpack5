@@ -38,10 +38,10 @@ module.exports = {
         //publicPath: 'https://cdn.example.com/assets/',
         //publicPath: 'http://127.0.0.1:8899/',
         publicPath: '',
-        // clean: {
-        //     dry: true,
-        //     keep: /\.css/,
-        // }
+        clean: {
+            dry: true,
+            keep: /\.css/,
+        }
     },
     // https://webpack.js.org/configuration/mode/#usage
     mode: 'none', // 'none' 'development' 'production'
@@ -56,69 +56,40 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: '[name].[contenthash].css'
         }),
-        new CleanWebpackPlugin({}),
-        // new HtmlWebpackPlugin({
-        //     template: 'src/template.hbs',
-        //     title: 'Webpack App by Tom S.',
-        //     filename: 'index.html',
-        //     meta: {
-        //         description: 'A better Webpack Solution',
-        //     },
-        //     minify: true
-        // })
         new HtmlWebpackPlugin({
             template: 'src/template.hbs',
             title: 'Webpack App by Tom S.',
             filename: 'hello.html',
             meta: {
-                description: 'A better Webpack Solution',
+                description: 'A better Webpack Solution for hello-world',
             },
-            minify: true,
-            chunks: ['hello']
+            minify: false
         }),
-        new HtmlWebpackPlugin({
-            template: 'src/template.hbs',
-            title: 'Webpack Car by Tom S.',
-            filename: 'car.html',
-            meta: {
-                description: 'A better Webpack Solution for Car',
-            },
-            minify: false,
-            chunks: ['car']
-        }),
-        new ModuleFederationPlugin({
-            name: 'HelloApp',
-            filename: 'remoteEntry.js',
-            exposes: {
-                './Hello': './src/hello.js',
-            },
-        }),
-        new ModuleFederationPlugin({
-            name: 'CarApp',
-            remotes: {
-                'HelloApp': 'HelloApp@http://localhost:8899/remoteEntry.js',
-            },
-        })
+        // new ModuleFederationPlugin({
+        //     name: 'HelloApp',
+        //     filename: 'remoteEntry.js',
+        //     exposes: {
+        //         './Hello': './src/hello.js',
+        //     },
+        // }),
+        // new ModuleFederationPlugin({
+        //     name: 'CarApp',
+        //     remotes: {
+        //         'HelloApp': 'HelloApp@http://localhost:8899/remoteEntry.js',
+        //     },
+        // })
     ],
     module: {
         rules: [
             // {
-            //     test: /\.(png|jpg)$/,
-            //     type: 'asset/resource'
+            //     test: /\.(png|jpg|svg|webp)$/,
+            //     type: 'asset',
+            //     parser: {
+            //         dataUrlCondition: {
+            //             maxSize: 4 * 1024 // 4kb
+            //         }
+            //     }
             // },
-            // {
-            //     test: /\.(svg)$/,
-            //     type: 'asset/inline'
-            // },
-            {
-                test: /\.(png|jpg|svg|webp)$/,
-                type: 'asset',
-                parser: {
-                    dataUrlCondition: {
-                        maxSize: 4 * 1024 // 4kb
-                    }
-                }
-            },
             {
                 test: /\.txt/,
                 type: 'asset/source'

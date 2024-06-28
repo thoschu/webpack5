@@ -12,7 +12,6 @@
     "webpack:serve:production": "npx webpack serve --mode=production",
     "webpack:stats": "npx webpack --stats detailed",
     "serve": "npx http-server -o ./dist --log-ip true",
-    "serve:all": "npx concurrently \"npm run serve:hello\"",
     "serve:hello": "npx http-server --port 8899 -o ./dist/hello.html --log-ip true",
     "server": "node server.js",
     "clean": "npx rimraf dist",

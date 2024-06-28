@@ -70,7 +70,7 @@ module.exports = {
             title: 'Webpack Car by Tom S.',
             filename: 'car.html',
             meta: {
-                description: 'A better Webpack Solution for Car',
+                description: 'A better Webpack Solution for car',
             },
             minify: false
         }),
