@@ -41,7 +41,7 @@ module.exports = {
         publicPath: 'http://localhost:3001/',
         clean: {
             dry: true,
-            // keep: /\.css/,
+            keep: /\.css/,
         }
     },
     // https://webpack.js.org/configuration/mode/#usage
@@ -71,6 +71,7 @@ module.exports = {
             filename: 'remoteEntry.js',
             exposes: {
                 './AlertButton': './src/components/alert-button/alert-button.js',
+                './HelloPage': './src/components/hello-page/hello-page.js',
             },
         })
     ],

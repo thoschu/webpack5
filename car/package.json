@@ -1,7 +1,7 @@
 {
   "name": "webpack5_car",
   "version": "1.0.0",
-  "description": "https://webpack.js.org/",
+  "description": "POC: https://webpack.js.org/",
   "main": "",
   "scripts": {
     "webpack": "npx webpack --config webpack.config.js",
@@ -13,7 +13,7 @@
     "webpack:stats": "npx webpack --stats detailed",
     "serve": "npx http-server -o ./dist --log-ip true",
     "serve:car": "npx http-server --port 8888 -o ./dist/car.html --log-ip true",
-    "server": "node server.js",
+    "server:car": "node server.js",
     "clean:dist": "npx rimraf dist",
     "clean:node_modules": "npx rimraf node_modules",
     "test": "echo \"Error: no test specified\" && exit 1"

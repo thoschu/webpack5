@@ -1,14 +1,9 @@
-import { toUpper } from 'lodash';
-
-import helloWorld from './hello-World.js';
-import AlertButton from './components/alert-button/alert-button.js';
-
-const text = toUpper('Bitte klicken...'),
-    alertButton = new AlertButton(text);
+import HelloPage from './components/hello-page/hello-page.js';
 
 try {
-    helloWorld();
-    alertButton.render();
-} catch(error) {
+    const helloPage = new HelloPage();
+
+    helloPage.render();
+} catch (error) {
     console.error(error);
 }

@@ -38,10 +38,6 @@ bower_components
 # Compiled binary addons (https://nodejs.org/api/addons.html)
 build/Release
 
-# Dependency directories
-car/node_modules/
-jspm_packages/
-
 # Snowpack dependency directory (https://snowpack.dev/)
 web_modules/
 
@@ -130,5 +126,8 @@ dist
 .pnp.*
 .idea
 
+# Dependency directories
 car/node_modules/
 hello/node_modules/
+dashboard/node_modules/
+jspm_packages/

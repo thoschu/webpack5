@@ -1,11 +1,8 @@
 const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { ModuleFederationPlugin } = require('webpack').container;
-
-// https://webpack.js.org/plugins/
 
 module.exports = {
     performance : {
@@ -19,38 +16,24 @@ module.exports = {
         static: {
             directory: path.resolve(__dirname, './dist'),
         },
-        compress: true,
-        port: 9002,
+        port: 9000,
         allowedHosts: 'auto',
-        headers: {
-            'X-Custom-Foo': 'bar',
-        },
         devMiddleware: {
-            index: 'car.html', // '/'
+            index: 'dashboard.html', // '/'
             writeToDisk: true
+        },
+        historyApiFallback: {
+            index: 'dashboard.html'
         }
     },
-    entry: './src/car.js',
-    // entry: {
-    //     hello: './src/hello.js',
-    //     // car: './src/car.js',
-    //     car: {
-    //         import: './src/car.js',
-    //         // dependOn: 'shared',
-    //     }
-    // },
+    entry: './src/dashboard.js',
     output: {
         path: path.resolve(__dirname, './dist'),
         filename: '[name].[contenthash].js', //'[id].[contenthash].js'
-        //publicPath: 'auto',
-        //publicPath: 'https://cdn.example.com/assets/',
-        //publicPath: 'http://127.0.0.1:8899/',
-        //publicPath: '',
-        publicPath: 'http://localhost:3002/',
-        // clean: {
-        //     dry: true,
-        //     keep: /\.css/,
-        // }
+        publicPath: 'http://localhost:3000/',
+        clean: {
+            dry: true
+        }
     },
     // https://webpack.js.org/configuration/mode/#usage
     mode: 'none', // 'none' 'development' 'production'
@@ -65,44 +48,36 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: '[name].[contenthash].css'
         }),
-        new CleanWebpackPlugin({}),
         new HtmlWebpackPlugin({
             template: 'src/template.hbs',
-            title: 'Webpack Car by Tom S.',
-            filename: 'car.html',
+            title: 'Webpack Dashboard by Tom S.',
+            filename: 'dashboard.html',
             meta: {
-                description: 'A better Webpack Solution for car',
+                description: 'A better Webpack Solution for dashboard',
             },
             minify: false
         }),
         new ModuleFederationPlugin({
-            name: 'CarApp',
+            name: 'DashboardApp',
             remotes: {
                 'HelloWorldApp': 'HelloWorldApp@http://localhost:3001/remoteEntry.js',
-            },
-            filename: 'remoteEntry.js',
-            exposes: {
-                './CarPage': './src/components/car-page/car-page.js',
-            },
+                'CarApp': 'CarApp@http://localhost:3002/remoteEntry.js',
+            }
         })
     ],
     module: {
         rules: [
             {
-                test: /\.(png|jpg|svg|webp)$/,
-                type: 'asset',
-                parser: {
-                    dataUrlCondition: {
-                        maxSize: 4 * 1024 // 4kb
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: [
+                            '@babel/env' // compiles modern JS down to ES5
+                        ]
                     }
                 }
-            },
-            {
-                test: /\.scss$/,
-                use: [
-                    //'style-loader', 'css-loader', 'sass-loader'
-                    MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'
-                ]
             },
             {
                 test: /\.hbs$/,

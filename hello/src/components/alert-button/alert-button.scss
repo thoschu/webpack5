@@ -1,10 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Tiny5&display=swap');
 
-$base-color: #04AA6D;
-$text-color: darken($base-color, 20%);
+$base-color-secondary: #04AA6D;
+$base-color-primary: #04aaaa;
+$text-color: darken($base-color-primary, 20%);
 
 .alert-button {
-    background-color: $base-color;
+    background-color: $base-color-primary;
     border: none;
     color: $text-color;
     padding: 15px 32px;
@@ -17,6 +18,6 @@ $text-color: darken($base-color, 20%);
     font-style: normal;
 
     &:hover {
-        background-color: lighten($base-color, 20%);
+        background-color: lighten($base-color-primary, 40%);
     }
 }
