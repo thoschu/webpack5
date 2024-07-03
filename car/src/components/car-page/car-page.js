@@ -15,6 +15,13 @@ class CarPage {
             header.render();
             car.render();
 
+            import('ImageCaptionApp/ImageCaption').then((ImageCaptionModule) => {
+                const ImageCaption = ImageCaptionModule.default;
+                const imageCaption = new ImageCaption();
+
+                imageCaption.render('Golf is the one of the best car...');
+            });
+
         } catch (error) {
             console.error(error);
         }

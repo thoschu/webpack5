@@ -1,5 +1,5 @@
 {
-  "name": "webpack5_hello",
+  "name": "webpack5_image-caption",
   "version": "1.0.0",
   "description": "POC: https://webpack.js.org/",
   "main": "",
@@ -7,13 +7,13 @@
     "webpack": "npx webpack --config webpack.config.js",
     "webpack:development": "npx webpack --mode=development",
     "webpack:production": "npx webpack --mode=production",
-    "webpack:serve": "npx webpack serve",
+    "webpack:serve": "npx webpack serve --hot",
     "webpack:serve:development": "npx webpack serve --mode=development",
     "webpack:serve:production": "npx webpack serve --mode=production",
     "webpack:stats": "npx webpack --stats detailed",
     "serve": "npx http-server -o ./dist --log-ip true",
-    "serve:hello": "npx http-server --port 8899 -o ./dist/hello.html --log-ip true",
-    "server:hello": "node server.js",
+    "serve:image-caption": "npx http-server --port 8896 -o ./dist/image-caption.html --log-ip true",
+    "server:image-caption": "node server.js",
     "clean:dist": "npx rimraf dist",
     "clean:node_modules": "npx rimraf node_modules",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -41,7 +41,6 @@
     "webpack-dev-server": "^5.0.4"
   },
   "dependencies": {
-    "express": "^4.19.2",
-    "lodash": "^4.17.21"
+    "express": "^4.19.2"
   }
 }

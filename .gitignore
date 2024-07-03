@@ -130,4 +130,5 @@ dist
 car/node_modules/
 hello/node_modules/
 dashboard/node_modules/
+image-caption/node_modules/
 jspm_packages/

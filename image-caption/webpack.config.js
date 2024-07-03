@@ -1,11 +1,8 @@
 const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { ModuleFederationPlugin } = require('webpack').container;
-
-// https://webpack.js.org/plugins/
 
 module.exports = {
     performance : {
@@ -19,38 +16,24 @@ module.exports = {
         static: {
             directory: path.resolve(__dirname, './dist'),
         },
-        compress: true,
-        port: 9002,
+        port: 9003,
         allowedHosts: 'auto',
-        headers: {
-            'X-Custom-Foo': 'bar',
-        },
         devMiddleware: {
-            index: 'car.html', // '/'
+            index: 'image-caption.html', // '/'
             writeToDisk: true
+        },
+        historyApiFallback: {
+            index: 'image-caption.html'
         }
     },
-    entry: './src/car.js',
-    // entry: {
-    //     hello: './src/hello.js',
-    //     // car: './src/car.js',
-    //     car: {
-    //         import: './src/car.js',
-    //         // dependOn: 'shared',
-    //     }
-    // },
+    entry: './src/image-caption.js',
     output: {
         path: path.resolve(__dirname, './dist'),
         filename: '[name].[contenthash].js', //'[id].[contenthash].js'
-        //publicPath: 'auto',
-        //publicPath: 'https://cdn.example.com/assets/',
-        //publicPath: 'http://127.0.0.1:8899/',
-        //publicPath: '',
-        publicPath: 'http://localhost:3002/',
-        // clean: {
-        //     dry: true,
-        //     keep: /\.css/,
-        // }
+        publicPath: 'http://localhost:3003/',
+        clean: {
+            dry: true
+        }
     },
     // https://webpack.js.org/configuration/mode/#usage
     mode: 'none', // 'none' 'development' 'production'
@@ -65,45 +48,42 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: '[name].[contenthash].css'
         }),
-        new CleanWebpackPlugin({}),
         new HtmlWebpackPlugin({
             template: 'src/template.hbs',
-            title: 'Webpack Car by Tom S.',
-            filename: 'car.html',
+            title: 'Webpack ImageCaption by Tom S.',
+            filename: 'image-caption.html',
             meta: {
-                description: 'A better Webpack Solution for car',
+                description: 'A better Webpack Solution for image-caption',
             },
             minify: false
         }),
         new ModuleFederationPlugin({
-            name: 'CarApp',
-            remotes: {
-                'HelloWorldApp': 'HelloWorldApp@http://localhost:3001/remoteEntry.js',
-                'ImageCaptionApp': 'ImageCaptionApp@http://localhost:3003/remoteEntry.js',
-            },
+            name: 'ImageCaptionApp',
             filename: 'remoteEntry.js',
             exposes: {
-                './CarPage': './src/components/car-page/car-page.js',
-            },
+                './ImageCaption': './src/components/image-caption/image-caption.js',
+            }
         })
     ],
     module: {
         rules: [
             {
-                test: /\.(png|jpg|svg|webp)$/,
-                type: 'asset',
-                parser: {
-                    dataUrlCondition: {
-                        maxSize: 4 * 1024 // 4kb
-                    }
-                }
-            },
-            {
                 test: /\.scss$/,
                 use: [
-                    //'style-loader', 'css-loader', 'sass-loader'
                     MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'
                 ]
+            },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: [
+                            '@babel/env' // compiles modern JS down to ES5
+                        ]
+                    }
+                }
             },
             {
                 test: /\.hbs$/,
