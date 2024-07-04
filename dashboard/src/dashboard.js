@@ -23,4 +23,5 @@ switch(url) {
         break;
     default:
         window.location = 'http://localhost:3000/hello-page';
+        console.log(window.location);
 }
